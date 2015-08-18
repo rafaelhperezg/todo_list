@@ -1,2 +1,11 @@
-<h1>Tasks#new</h1>
-<p>Find me in app/views/tasks/new.html.erb</p>
+<!-- with the @task, rails will redirect to create or to update automatically
+il will check if it's a new task or an existing one and will send to the correspondent view
+(even if as we'll see we don't need to go to create.html.erb, instead we'll redirect
+to index) -->
+<%= form_for(@task) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :done, value: false %>
+  <%= f.submit %>
+<% end %>
+
