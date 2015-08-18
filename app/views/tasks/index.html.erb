@@ -17,6 +17,10 @@
           <!-- now we'lll create a link to show the task (it could be interest if the task  -->
           <!-- had a desription for exemple) -->
           <%= link_to "- Show Task", task_path(task), class: "" %>
+          <p><%= link_to "Delete", task_path(task),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+          </p>
         </li>
       <% end %>
     </ul>

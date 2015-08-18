@@ -40,11 +40,14 @@ class TasksController < ApplicationController
 # --------------
 
   def show
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id])  #I receive the params when the user click on the link Show task
   end
 
 # --------------
   def destroy
+    @task = Task.find(params[:id])  #I receive the params when the user click on the link delete
+    @task.destroy
+    redirect_to root_path
   end
 
   private
