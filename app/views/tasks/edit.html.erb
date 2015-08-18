@@ -1,2 +1,15 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <!-- the @task here we get it from the instance variable(and we find it with the find method) -->
+      <%= form_for(@task) do |f| %>
+        <%= f.label :name, "name of the new task" %>
+        <%= f.text_field :name %>
+        <%= f.hidden_field :done, value: false %>
+        <%= f.submit class: "btn btn-primary"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+

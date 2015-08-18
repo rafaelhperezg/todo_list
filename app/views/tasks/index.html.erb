@@ -1,13 +1,20 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <h1>My list of tasks</h1>
-    <ul class="centered">
+    <ul class="">
       <% @tasks.each do |task| %>
-        <% if task.done %>
-            <li> <%= task.name %> <i class="fa fa-check"></i> </li>
-          <% else %>
-            <li> <%= task.name %> <i class="fa fa-times"></i> </li>
-        <% end %>
+        <li>
+          <%= task.name %>
+          <% if task.done %>
+              <i class="fa fa-check"></i>
+            <% else %>
+              <i class="fa fa-times"></i>
+          <% end %>
+          <!-- Now we'll add a link to allow editing (if we see the routes we can
+          see that edit_task will need the od of the task (the url is tasks/:id/edit)
+          )so we pass task (that is the instance) to the oathand rails will get the id from it  -->
+          <%= link_to "Edit Task", edit_task_path(task), class: "" %>
+        </li>
       <% end %>
     </ul>
   </div>

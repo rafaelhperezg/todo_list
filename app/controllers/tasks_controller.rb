@@ -3,6 +3,7 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+# -------------
   def new
     # on fait ce task.new car le for form de new.html a besoin d'un task comme parametre pour
     # savoir sil nous dirige vers create or update. donc on lui passe ce task new pour quil cmoprenne qu'on veut
@@ -16,15 +17,27 @@ class TasksController < ApplicationController
   def create
     # Task.create(parametres) est egal à faire => my_task = Task.new(parametres) puis my_task.save
     Task.create(task_params)
-    redirect_to root_path
+    redirect_to root_path #sinon on sera dirigé vers une page qui s'appelle tasks dans laquelle il ny a rien
   end
+# --------------
 
   def edit
+    # if we make a raise here we can see that the link "Modify task" from index.html
+    # that sends us here passed a params like this {"controller"=>"tasks", "action"=>"edit", "id"=>"1"}
+    # so we cand do params[:id] and not params["task"[:id]]
+    @task = Task.find(params[:id])
   end
 
   def update
+    # from edit we get a params[task] that we need to filter with the private method task_params
+  @task = Task.find(params[:id]) #This is not good => @task = Task.find(params["task"][:id])
+  #                         ifi see the paramsin this stade, the id is a key of params, tasks is another id containing
+  #                          the name and the done state
+  @task.update(task_params)
+  redirect_to root_path
   end
 
+# --------------
   def show
   end
 
