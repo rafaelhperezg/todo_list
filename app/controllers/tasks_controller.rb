@@ -1,4 +1,11 @@
 class TasksController < ApplicationController
+
+  # before_action :set_task, only: [:show, :edit, :update, :destroy]
+
+# IMPORTANT:if i use the line above and the second private method i can erase all
+# the lines  " @task = Task.find(params[:id]) "  inside the actions
+
+
   def index
     @tasks = Task.all
   end
@@ -30,11 +37,11 @@ class TasksController < ApplicationController
 
   def update
     # from edit we get a params[task] that we need to filter with the private method task_params
-  @task = Task.find(params[:id]) #This is not good => @task = Task.find(params["task"][:id])
-  #                         ifi see the paramsin this stade, the id is a key of params, tasks is another id containing
-  #                          the name and the done state
-  @task.update(task_params)
-  redirect_to root_path
+    @task = Task.find(params[:id]) #This is not good => @task = Task.find(params["task"][:id])
+    #                         ifi see the paramsin this stade, the id is a key of params, tasks is another id containing
+    #                          the name and the done state
+    @task.update(task_params)
+    redirect_to root_path
   end
 
 # --------------
@@ -58,5 +65,8 @@ class TasksController < ApplicationController
       params.require(:task).permit(:name, :done)
   end
 
+  # def set_task
+  #   @task = Task.find(params[:id])
+  # end
 
 end
